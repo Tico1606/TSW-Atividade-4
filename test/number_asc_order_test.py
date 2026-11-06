@@ -1,3 +1,5 @@
+import random
+
 import pytest
 
 from src.custom_stack_class import CustomStack
@@ -18,6 +20,16 @@ def test_sort_returns_ascending_numbers_and_preserves_real_stack():
     result = NumberAscOrder().sort(stack)
 
     assert result == [1, 5, 12, 34, 42, 60]
+    assert stack.elements == draw
+
+
+def test_sort_handles_six_randomly_selected_numbers():
+    draw = random.sample(range(1, 61), 6)
+    stack = make_stack(draw)
+
+    result = NumberAscOrder().sort(stack)
+
+    assert result == sorted(draw)
     assert stack.elements == draw
 
 
